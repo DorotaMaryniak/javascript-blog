@@ -53,9 +53,9 @@ function generateTitleLinks(){
   /* for each article */
   const articles= document.querySelectorAll(optArticleSelector);
   console.log('Articles:', articles)
+  let html='';
+
   for(let article of articles){
-
-
 
     /* get the article id */
     const articleId = article.getAttribute('id');
@@ -70,7 +70,9 @@ function generateTitleLinks(){
     console.log(linkHTML)
 
     /* insert link into titleList */
+    html = html + linkHTML;
   }
+  titleList.innerHTML = html;
 
 }
 
