@@ -88,8 +88,8 @@ function generateTags(){
   for(let article of articles){
 
     /* find tags wrapper */
-    const tagsList = document.querySelector( optArticleTagsSelector );
-    console.log(tagsList);
+    const tagsList = article.querySelector( optArticleTagsSelector );
+    console.log('tagsList:',tagsList);
 
     /* make html variable with empty string */
     let html ='';
