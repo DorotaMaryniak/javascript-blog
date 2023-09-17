@@ -207,11 +207,11 @@ function generateAuthors (){
     let html ='';
 
     /* get authors from data-autor attribute */
-    const articleAuthors = article.getAttribute('data-author');
-    console.log(articleAuthors);
+    const articleAuthor = article.getAttribute('data-author');
+    console.log(articleAuthor);
 
     /* generate HTML of the link */
-    const linkHTML = '<a href="#">' + articleAuthors + '</a>';
+    const linkHTML = '<a href="#author-' + articleAuthor +'">' + articleAuthor + '</a>';
     console.log(linkHTML);
 
     /* insert HTML of all the links into the paragraph */
