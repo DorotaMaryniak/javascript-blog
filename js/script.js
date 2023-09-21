@@ -1,8 +1,8 @@
 'use strict';
 const templates = {
   articleLink: Handlebars.compile(document.querySelector('#template-article-link').innerHTML),
-  tagArticleLink: Handlebars.compile(document.querySelector('#template-tagArticle-link').innerHTML)
-
+  tagArticleLink: Handlebars.compile(document.querySelector('#template-tagArticle-link').innerHTML),
+  authorArticleLink: Handlebars.compile(document.querySelector('#template-authorArticle-link').innerHTML)
 };
 
 function titleClickHandler(event){
@@ -278,8 +278,8 @@ function generateAuthors (){
     console.log(articleAuthor);
 
     /* generate HTML of the link */
-    const linkHTML = '<a href="#author-' + articleAuthor +'">' + articleAuthor + '</a>';
-    console.log(linkHTML);
+    const linkHTMLData = {author: articleAuthor };
+    const linkHTML = templates.authorArticleLink(linkHTMLData);
 
     /* [NEW] check if articleAuthor is NOT already in allAuthors */
     if(!allAuthors.hasOwnProperty(articleAuthor)){
