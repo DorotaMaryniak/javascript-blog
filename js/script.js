@@ -154,7 +154,7 @@ function generateTags(){
         allTags[tag]=1;
       }
       else{
-        allTags[tag]++
+        allTags[tag]++;
       }
 
     /* END LOOP: for each tag */
