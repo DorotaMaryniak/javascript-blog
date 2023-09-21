@@ -43,7 +43,8 @@ const optArticleSelector = '.post',
   optArticleAuthorSelector ='.post-author',
   optTagsListSelector = '.tags.list',
   optCloudClassCount = 5,
-  optCloudClassPrefix = 'tag-size-';
+  optCloudClassPrefix = 'tag-size-',
+  optAuthorsListSelector = '.list.authors';
 
 function generateTitleLinks(customSelector=''){
 
@@ -253,6 +254,9 @@ function addClickListenersToTags(){
 addClickListenersToTags();
 
 function generateAuthors (){
+  /* [NEW] create a new variable allAuthors with an empty object */
+  let allAuthors = {};
+  console.log('Empty author object:', allAuthors);
   /* find all articles */
   const articles= document.querySelectorAll(optArticleSelector);
   console.log('All articles',articles);
@@ -271,11 +275,36 @@ function generateAuthors (){
     const linkHTML = '<a href="#author-' + articleAuthor +'">' + articleAuthor + '</a>';
     console.log(linkHTML);
 
+    /* [NEW] check if articleAuthor is NOT already in allAuthors */
+    if(!allAuthors.hasOwnProperty(articleAuthor)){
+      /* [NEW] add articleAuthor to allAuthors object */
+      allAuthors[articleAuthor]=1;
+    }
+    else{
+      allAuthors[articleAuthor]++;
+      console.log(allAuthors);
+    }
+
     /* insert HTML of all the links into the paragraph */
     authorParagraph.innerHTML = linkHTML;
     /* END LOOP: for every article: */
 
   }
+  /* [NEW] find list of tags in right column */
+  const authorsList = document.querySelector( optAuthorsListSelector);
+  console.log(authorsList);
+
+  /* [NEW] create variable for all authors HTML code */
+  let allAuthorsHTML = '';
+
+  /* [NEW] create START LOOP: for each author in allAuthors*/
+  for (let articleAuthor in allAuthors){
+    /*[NEW] generate code of a link and add it to allTagshtml*/
+    allAuthorsHTML+= '<li><a href="#author-' + articleAuthor +'">' + articleAuthor + '(' + allAuthors[articleAuthor] + ')</a></li>';
+  /* END LOOP: for each author in allAuthors */
+  }
+  /*[NEW] add html from allAuthorsHTML to authorsList*/
+  authorsList.innerHTML=allAuthorsHTML;
 
 }
 generateAuthors();
@@ -326,7 +355,7 @@ function authorClickHandler(event){
 
 function addClickListenersToAuthors(){
   /* find all links to authors */
-  const links = document.querySelectorAll('.post-author a');
+  const links = document.querySelectorAll('a[href^="#author-"]');
   console.log('Links for authors',links);
 
   /* START LOOP: for each link */
