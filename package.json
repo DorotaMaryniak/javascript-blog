@@ -2,7 +2,7 @@
   "name": "task-runner",
   "version": "1.0.0",
   "description": "",
-  "main": "inndex.html",
+  "main": "index.html",
   "scripts": {
     "init-project": "npm install && npm-run-all init:*",
     "init:dirs": "mkdirp sass css vendor images js",
